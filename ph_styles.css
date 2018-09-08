@@ -1,21 +1,29 @@
 @charset "utf-8";
+
 /* 
 Above, I've linked the character set that the CSS document would be based on.
 */
 /* 
-Below, I've linked my fonts in a selector, which, using the fonts that my client has sent me, will display those pages, because I've put them in a font-family, and linked them inside of urls to the text files given to me. TrueType is just the format for .ttf files, while .woff is the format for woff files. At the moment, I am unsure if I need to keep the font families in the same font face or not. I'll check back later to make sure there are different fonts where needed.
+Below, I've linked my fonts in a selector, which, using the fonts that my client has sent me, will display those pages, because I've put them in a font-family, and linked them inside of urls to the text files given to me. TrueType is just the format for .ttf files, while .woff is the format for woff files. At the moment, I am unsure if I need to keep the font families in the same font face or not. I'll check back later to make sure there are different fonts where needed. *Update*: They work. 
 */
-@font-face{
+@font-face {
     font-family: Champagne;
     src: url('cac_champagne.woff') format('woff');
     src: url('cac_champagne.ttf') format('TrueType');
+}
+
+@font-face {
     font-family: Grunge;
     src: url("1942.woff") format('woff');
     src: url("1942.ttf") format("TrueType");
+}
+
+@font-face {
     font-family: Dobkin;
     src: url('DobkinPlain.woff') format("woff");
-    src: url("DobkinPlain.ttf") format("TrueType")
+    src: url("DobkinPlain.ttf") format("TrueType");
 }
+
 /*
    New Perspectives on HTML5 and CSS3, 7th Edition
    Tutorial 2
@@ -28,72 +36,134 @@ Below, I've linked my fonts in a selector, which, using the fonts that my client
    Filename: ph_styles.css
 
 */
-
-
 /* Structural Styles */
 /* 
 To set my background color here, I use hsl; hue, saturation, lightness. This affects the background to the color set by the hue color, and the strength of the color and brightness of the color, represented by a percentage value. The hue value, however, is set on a color wheel value, and doesn't need percent value.
 */
-html{
+html {
     background-color: hsl(91, 8%, 56%);
 }
 
-
-body{
+body {
     background-color: hsl(58, 31%, 84%);
     font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
 }
 
-header{
+header {
     background-color: black;
 }
+
 /* 
-Here, the padding can be a little bit confusing to the untrained eye. The first value of the padding, 5px, is to the first value, which is the top value. Imagine that the next values are clockwise of the first value, and that corresponds to the next side. 25px is set to the right, bottom, and left respectively. I also tried using 5px, 25px, 25px, since if the two values are the same, you can leave one blank (Or, if you want the same amount of padding all around, one value is all you need.) However, I found that it would look better and cleaner if I put in all the values.
+Here, the padding can be a little bit confusing to the untrained eye. The first value of the padding, 5px, is to the first value, which is the top value. Imagine that the next values are clockwise of the first value, and that corresponds to the next side. 25px is set to the right, bottom, and left respectively. I also tried using 5px 25px 25px since if the two values are the same, you can leave one blank (Or, if you want the same amount of padding all around, one value is all you need.) However, I found that it would look better and cleaner inside of my code if I put in all the values.
 */
-p{
+p {
     margin: 0px;
-    padding: 5px, 25px, 25px, 25px;
+    padding: 5px 25px 25px 25px;
 }
+
 /* 
 Here, the greater than symbol is to show that only the paragraphs inside of the body paragraph would be effected by these changes. Furthermore, those paragraphs would share the same characteristics that the body tag contains.
 */
-body>p{
+body>p {
     font-size: 1.1em;
     text-align: center;
 }
 
 /* 
-There is a lot going on in this tag, so I'll try to break it down. Font-style is usually a property which allows text to be either normal, italic, or oblique. Font-size is a property which is measured in em's, which is relative to a browser, but can also be measured in pixels, or percentages(which is ill advised relative to the other options given to us. Text align moves the text to the middle of the page in a horizontal line. Padding effects the top and the bottom of the page, while setting the sides to 0 px.
+There is a lot going on in this tag, so I'll try to break it down. Font-style is usually a property which allows text to be either normal, italic, or oblique. Font-size is a property which is measured in em's, which is relative to a browser, but can also be measured in pixels, or percentages(which is ill advised relative to the other options given to us. Text align moves the text to the middle of the page in a horizontal line. Padding(top and bottom) effects the top and the bottom of the page, while not disturibing the side padding spaces.
 */
-address{
+address {
     font-style: normal;
     font-size: 0.9em;
     text-align: center;
-    padding: 10px, 0px;
-}
-/* Navigation Styles */
-nav a{
-    font-family: 'Trebuchet MS', Helvetica, sans-serif;
-    padding: 10px, 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-nav>a:link,
-nav>a:visited{
+/* Navigation Styles */
+nav a {
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* 
+In this section below, I made a small mistake and realized that no matter how much I reloaded my code, It would not fix itself. Before a fix, my code consisted of "nav>a". However, I went to my index and realized that the files were inside of unordered lists, and inside of that, my anchors were nested inside of list item tags. Adding them seemed to fix the problem, So I stuck with that.
+*/
+/*  
+The nav>a (meaning that an anchor tag with the direct characteristics of everything inside of the nav)directly followed by the pseudo-elements mean that anchors (sharing the same characteristics of navs) when they, as hyperlink texts, have been visited or not visited, they will share the same characteristics either way.
+*/
+nav>ul>li>a:link,
+nav>ul>li>a:visited {
     color: white;
     text-decoration: none;
-    background-color: hsla(0, 0%, 42%, 0.4)
+    background-color: hsla(0, 0%, 42%, 0.4);
 }
 
-nav>a:active,
-nav>a:hover{
+/* 
+This nav>a means close to the same thing as above, but when the link is in the process of being clicked (the :active pseudo-element) or being hovered over (the :hover pseudo-element), then it would have these attributes as apposed to what it is set to above.
+*/
+nav>ul>li>a:active,
+nav>ul>li>a:hover {
     color: hsla(0, 0%, 100%, 0.7);
     background-color: hsla(0, 0%, 42%, 0.7);
 }
 
 /* Section Styles */
+/* 
+In this entire section, it's necessary to know the difference between class and id. Class refers to more than one element which you want to share to a group of other elements. Id tags only apply to one certain element in your document, which is used for specifying between the same elements inside a larger element. (such as a specific header in an entire section)
+*/
+section.playbill h1 {
+    font-size: 3em;
+    font-weight: normal;
+    margin: 0px;
+    padding: 20px 0px 10px 20px;
+}
 
+section#play1 {
+    background-color: hsl(240, 100%, 88%);
+}
 
+section#play2 {
+    background-color: hsl(25, 88%, 73%);
+}
 
+section#play3 {
+    background-color: hsl(0, 100%, 75%);
+}
+
+section#play4 {
+    background-color: hsl(296, 86%, 86%);
+}
+
+section#play1 h1 {
+    font-family: Champagne, cursive;
+}
+
+section#play2 h1 {
+    font-family: Grunge, 'Times New Roman', Times, serif;
+}
+
+section#play3 h1 {
+    font-family: Impact, Charcoal, sans-serif;
+}
+
+section#play4 h1 {
+    font-family: Dobkin, cursive;
+}
 
 /* Description List Styles */
+/* 
+Although the instructions only ask for you to put things in dt and dd tags, it's important to know that they are inside of description list tags. Without that, they will not work.
+*/
+dl>dt {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: hsla(0, 0%, 0%, 0.4);
+}
 
+dl>dd {
+    font-size: 1.3em;
+    margin-left: 0px;
+    margin-bottom: 10px;
+}
